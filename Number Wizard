@@ -1,1 +1,60 @@
 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NumberWizard : MonoBehaviour
+{
+    int MaxGuess = 14000;
+    int MinGuess = 1;
+    int ItMightBe = 7000;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartGame();
+    }
+
+    void StartGame()
+    {
+        int MaxGuess = 14000;
+        int MinGuess = 1;
+        int ItMightBe = 7000;
+        MaxGuess = MaxGuess + 1;
+
+        Debug.Log("I finished the Number Wizard Game, Nick.");
+        Debug.Log("Pick a number No Larger than " + MaxGuess);
+        Debug.Log("Or Smaller than " + MinGuess);
+        Debug.Log("Is your number larger or lower than " + ItMightBe);
+        Debug.Log("Push Up = Higher, Push Down = lower, Push Enter = correct");
+        MaxGuess = MaxGuess + 1;
+    }
+
+    // Update is called once per frame. This set of code is what the player inputs.
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Debug.Log("Ah. What about ");
+            MinGuess = ItMightBe;
+            NextGuess();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("Oh. Are you thinking of ");
+            MaxGuess = ItMightBe;
+            NextGuess();
+        }
+        else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("I knew it. Press Backspace to play again.");
+        }
+        else if (Input.GetKeyDown(KeyCode.Backspace))
+            StartGame();
+    }
+    void NextGuess()
+    {
+        ItMightBe = (MaxGuess + MinGuess) / 2;
+        Debug.Log(+ItMightBe);
+    }
+}
